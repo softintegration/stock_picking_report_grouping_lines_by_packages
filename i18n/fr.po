@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_picking_report_grouping_lines_by_packages
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-16 13:08+0000\n"
+"PO-Revision-Date: 2023-02-16 13:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_picking_report_grouping_lines_by_packages
+#: model:ir.model.fields,field_description:stock_picking_report_grouping_lines_by_packages.field_stock_picking_type__grouping_move_lines_by_packages
+msgid "Grouping move lines by packages in report"
+msgstr "Regroupement des mouvements par colis dans l'imprimé'"
+
+#. module: stock_picking_report_grouping_lines_by_packages
+#: model:ir.model.fields,help:stock_picking_report_grouping_lines_by_packages.field_stock_picking_type__grouping_move_lines_by_packages
+msgid ""
+"If this case is checked,the system will group the move lines of the picking "
+"by packages in the report."
+msgstr ""
+"Si cette case est cochée, le système regroupera les mouvements "
+"par colis dans l'imprimé du transfert."
+
+#. module: stock_picking_report_grouping_lines_by_packages
+#: model_terms:ir.ui.view,arch_db:stock_picking_report_grouping_lines_by_packages.report_delivery_document_inherited
+msgid "Package"
+msgstr "Colis"
+
+#. module: stock_picking_report_grouping_lines_by_packages
+#: model:ir.model,name:stock_picking_report_grouping_lines_by_packages.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Type de préparation"
+
+#. module: stock_picking_report_grouping_lines_by_packages
+#: model:ir.model,name:stock_picking_report_grouping_lines_by_packages.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements d'article (Ligne de mouvement de stock)"

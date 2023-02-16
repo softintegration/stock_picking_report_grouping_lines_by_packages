@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template inherit_id="stock.report_delivery_document" id="report_delivery_document_inherited">
+        <xpath expr="//t[@name='has_packages']" position="attributes">
+            <attribute name="t-if">o.has_packages and o.picking_type_id.grouping_move_lines_by_packages</attribute>
+        </xpath>
+        <xpath expr="//t[@name='aggregated_move_lines']" position="replace"/>
+        <xpath expr="//th[@name='th_sml_product']" position="after">
+            <t name="package_column" t-if="o.has_packages and not o.picking_type_id.grouping_move_lines_by_packages">
+                <th>
+                    Package
+                </th>
+            </t>
+        </xpath>
+        <xpath expr="//t[@name='has_packages']" position="after">
+            <t t-if="o.has_packages and not o.picking_type_id.grouping_move_lines_by_packages">
+                <tr t-foreach="o.move_line_ids" t-as="move_line">
+                    <t t-call="stock_picking_report_grouping_lines_by_packages.stock_report_delivery_simple_move_line"/>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="stock_report_delivery_simple_move_line">
+        <t t-set="move_line_aggregated_lines" t-value="move_line._get_qty_ordered_from_aggregated_product(strict=True)"/>
+        <td>
+            <span t-field="move_line.product_id"/>
+            <t t-if="not description and description != ''">
+                <t t-set="description" t-value="move_line.move_id.description_picking"/>
+            </t>
+            <p t-if="description !='' and description != move_line.product_id.name">
+                <span t-esc="description"/>
+            </p>
+        </td>
+        <t t-if="o.has_packages and not o.picking_type_id.grouping_move_lines_by_packages" name="package_detail">
+            <td>
+                <span t-field="move_line.result_package_id.name"/>
+            </td>
+        </t>
+        <t t-if="has_serial_number" name="move_line_simple_lot">
+            <td>
+                <span t-field="move_line.lot_id.name"/>
+            </td>
+        </t>
+        <td class="text-center" name="move_line_simple_qty_ordered">
+            <!--<span t-field="move_line.move_line.move_id.product_uom_qty"/>
+            <span t-field="move_line.product_uom_id"/>-->
+            <t t-if="move_line_aggregated_lines[move_line.id] and move_line_aggregated_lines[move_line.id]['qty_ordered']">
+                <span t-esc="move_line_aggregated_lines[move_line.id]['qty_ordered']"
+                        t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+                <span t-esc="move_line_aggregated_lines[move_line.id]['product_uom']"/>
+            </t>
+        </td>
+        <td class="text-center" name="move_line_simple_qty_done">
+            <span t-field="move_line.qty_done"/>
+            <span t-field="move_line.product_uom_id"/>
+        </td>
+    </template>
+
+</odoo>
